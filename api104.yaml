@@ -1,0 +1,531 @@
+openapi: 3.0.0
+info:
+  title: awmps-api
+  version: 1.0.4
+paths:
+  /pot_types:
+    get:
+      summary: Get a list of all pot types
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PotTypeList'
+    post:
+      summary: Create a new pot type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PotType'
+      responses:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PotType'
+        '201':
+          description: Pot Type created successfully
+  /pot_types/{id}:
+    get:
+      summary: Get details of a specific pot type
+      responses:
+        '200':
+          description: Successful response
+          content: 
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/PotTypeList'
+    put:
+      summary: Update a specific pot type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PotType'
+      responses:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PotType'
+        '200':
+          description: Pot Type updated successfully
+    delete:
+      summary: Delete a specific pot type
+      responses:
+        '204':
+          description: Pot Type deleted successfully
+  /user:
+    get:
+      summary: Get a list of all users
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserList'
+    post:
+      summary: Create a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created successfully
+  /user/{username}:
+    get:
+      summary: Get details of a specific user
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserList'
+    put:
+      summary: Update a specific user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User updated successfully
+    delete:
+      summary: Delete a specific user
+      responses:
+        '204':
+          description: User deleted successfully
+  /user_settings:
+    get:
+      summary: Get a list of all user settings
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSettingList'
+    post:
+      summary: Add a user setting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSetting'
+      responses:
+        '201':
+          description: Successfully created a user setting
+  /user_settings/{id}:
+    get:
+      summary: Get details of a specific user's settings
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSettingList'
+    put:
+      summary: Update a specific user's settings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSetting'
+      responses:
+        '200':
+          description: User settings updated successfully
+    delete:
+      summary: Delete a specific user's settings
+      responses:
+        '204':
+          description: User settings deleted successfully
+  /pots:
+    get:
+      summary: Get a list of pots
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PotList'
+    post:
+      summary: Create a new pot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pot'
+      responses:
+        '201':
+          description: Pot created successfully
+  /pots/{id}:
+    get:
+      summary: Get details of a specific pot
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PotList'
+    put:
+      summary: Update a specific pot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pot'
+      responses:
+        '200':
+          description: Pot updated successfully
+    delete:
+      summary: Delete a specific pot
+      responses:
+        '204':
+          description: Pot deleted successfully
+  /plants:
+    get:
+      summary: Get a list of all plants
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlantList'
+    post:
+      summary: Create a new plant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plant'
+      responses:
+        '201':
+          description: Plant created successfully
+  /plants/{id}:
+    get:
+      summary: Get details of a specific plant
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlantList'
+    put:
+      summary: Update a specific plant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plant'
+      responses:
+        '200':
+          description: Plant updated successfully
+    delete:
+      summary: Delete a specific plant
+      responses:
+        '204':
+          description: Plant deleted successfully
+  /sensors:
+    get:
+      summary: Get a list of all sensors
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SensorList'
+    post:
+      summary: Create a new sensor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sensor'
+      responses:
+        '201':
+          description: Sensor created successfully
+  /sensor/{id}:
+    get:
+      summary: Get details of a specific sensor
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SensorList'
+    put:
+      summary: Update a specific sensor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Sensor'
+      responses:
+        '200':
+          description: Sensor updated successfully
+    delete:
+      summary: Delete a specific sensor
+      responses:
+        '204':
+          description: Sensor deleted successfully
+  /commands:
+    get:
+      summary: Get a list of all commands
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommandList'
+    post:
+      summary: Create a new command
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Command'
+      responses:
+        '201':
+          description: Command created successfully
+  /commands/{id}:
+    get:
+      summary: Get details of a specific command
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommandList'
+    put:
+      summary: Update a specific command
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Command'
+      responses:
+        '200':
+          description: Command updated successfully
+    delete:
+      summary: Delete a specific command
+      responses:
+        '204':
+          description: Command deleted successfully
+  /rules:
+    get:
+      summary: Get a list of all rules
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleList'
+    post:
+      summary: Create a new rule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rule'
+      responses:
+        '201':
+          description: Rule created successfully
+  /rules/{id}:
+    get:
+      summary: Get details of a specific rule
+      responses:
+        '200':
+          description: Successful response
+          content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleList'
+    put:
+      summary: Update a specific rule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rule'
+      responses:
+        '200':
+          description: Rule updated successfully
+    delete:
+      summary: Delete a specific rule
+      responses:
+        '204':
+          description: Rule deleted successfully
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+          unique: true
+        password:
+          type: string
+          format: password
+        email:
+          type: string
+          unique: true
+        first_name:
+          type: string
+        last_name:
+          type: string
+        admin:
+          type: boolean
+        disabled:
+          type: boolean
+        last_signed:
+          type: string
+          format: date
+        notification:
+          type: boolean
+        user-notification-setting:
+          type: string
+    UserSetting:
+      type: object
+      properties:
+        notification:
+          type: boolean
+        pot_watering_notification:
+          type: boolean
+        low_moisture_notification:
+          type: boolean
+        plant_watering_schedule_notification_10min:
+          type: boolean
+        pot_watering_schedule_notification_10min:
+          type: boolean
+        low_temperature_notification:
+          type: int
+        low_soil_temperature_notification:
+          type: int
+    Pot:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        PotType_id:
+          type: integer
+    Plant:
+      type: object
+      properties:
+        id:
+          type: integer
+        pot_id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        position:
+          type: integer
+
+    Sensor:
+      type: object
+      properties:
+        id:
+          type: integer
+        Pot_id:
+          type: integer
+        sensor_tag:
+          type: string
+          unique: true
+        sensor_type:
+          type: string
+    PotType:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        capacity:
+          type: integer
+    Command:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        state:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        started_at:
+          type: string
+          format: date-time
+        finished_at:
+          type: string
+          format: date-time
+        created_by:
+          type: integer
+        pot_id:
+          type: integer
+    Rule:
+      type: object
+      properties:
+        id:
+          type: integer
+        type:
+          type: string
+        criteria:
+          type: string
+        Pot_id:
+          type: integer
+
+    PotTypeList:
+      type: array
+      items:
+        $ref: '#/components/schemas/PotType'
+    UserList: 
+      type: array
+      items: 
+        $ref: '#/components/schemas/User'
+    UserSettingList:
+      type: array
+      items: 
+        $ref: '#/components/schemas/UserSetting'
+    PotList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Pot'
+    PlantList:
+      type: array
+      items:
+        $ref:'#/components/schemas/Plant'
+    SensorList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Sensor'
+    CommandList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Command'
+    RuleList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Rule'
+#TODO: add schema to every reponse
