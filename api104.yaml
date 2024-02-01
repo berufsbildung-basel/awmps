@@ -21,21 +21,21 @@ paths:
             schema:
               $ref: '#/components/schemas/PotType'
       responses:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PotType'
         '201':
           description: Pot Type created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PotType'
   /pot_types/{id}:
     get:
       summary: Get details of a specific pot type
       responses:
         '200':
           description: Successful response
-          content: 
+          content:
             application/json:
-              schema: 
+              schema:
                 $ref: '#/components/schemas/PotTypeList'
     put:
       summary: Update a specific pot type
@@ -45,12 +45,12 @@ paths:
             schema:
               $ref: '#/components/schemas/PotType'
       responses:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PotType'
         '200':
           description: Pot Type updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PotType'
     delete:
       summary: Delete a specific pot type
       responses:
@@ -63,9 +63,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
     post:
       summary: Create a new user
       requestBody:
@@ -83,9 +83,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
     put:
       summary: Update a specific user
       requestBody:
@@ -108,9 +108,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserSettingList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSettingList'
     post:
       summary: Add a user setting
       requestBody:
@@ -128,9 +128,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UserSettingList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSettingList'
     put:
       summary: Update a specific user's settings
       requestBody:
@@ -153,9 +153,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PotList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PotList'
     post:
       summary: Create a new pot
       requestBody:
@@ -173,9 +173,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PotList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PotList'
     put:
       summary: Update a specific pot
       requestBody:
@@ -198,9 +198,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PlantList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantList'
     post:
       summary: Create a new plant
       requestBody:
@@ -218,9 +218,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PlantList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantList'
     put:
       summary: Update a specific plant
       requestBody:
@@ -243,9 +243,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SensorList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorList'
     post:
       summary: Create a new sensor
       requestBody:
@@ -263,9 +263,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SensorList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorList'
     put:
       summary: Update a specific sensor
       requestBody:
@@ -288,9 +288,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CommandList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandList'
     post:
       summary: Create a new command
       requestBody:
@@ -308,9 +308,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CommandList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandList'
     put:
       summary: Update a specific command
       requestBody:
@@ -333,9 +333,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RuleList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleList'
     post:
       summary: Create a new rule
       requestBody:
@@ -353,9 +353,9 @@ paths:
         '200':
           description: Successful response
           content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RuleList'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleList'
     put:
       summary: Update a specific rule
       requestBody:
@@ -379,13 +379,11 @@ components:
       properties:
         username:
           type: string
-          unique: true
         password:
           type: string
           format: password
         email:
           type: string
-          unique: true
         first_name:
           type: string
         last_name:
@@ -415,9 +413,9 @@ components:
         pot_watering_schedule_notification_10min:
           type: boolean
         low_temperature_notification:
-          type: int
+          type: integer
         low_soil_temperature_notification:
-          type: int
+          type: integer
     Pot:
       type: object
       properties:
@@ -450,7 +448,6 @@ components:
           type: integer
         sensor_tag:
           type: string
-          unique: true
         sensor_type:
           type: string
     PotType:
@@ -495,18 +492,17 @@ components:
           type: string
         Pot_id:
           type: integer
-
     PotTypeList:
       type: array
       items:
         $ref: '#/components/schemas/PotType'
-    UserList: 
+    UserList:
       type: array
-      items: 
+      items:
         $ref: '#/components/schemas/User'
     UserSettingList:
       type: array
-      items: 
+      items:
         $ref: '#/components/schemas/UserSetting'
     PotList:
       type: array
@@ -515,7 +511,7 @@ components:
     PlantList:
       type: array
       items:
-        $ref:'#/components/schemas/Plant'
+        $ref: '#/components/schemas/Plant'
     SensorList:
       type: array
       items:
@@ -528,4 +524,3 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Rule'
-#TODO: add schema to every reponse
