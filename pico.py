@@ -1,87 +1,66 @@
-import time, json, serial, random, threading
+import time, json, serial, random
 
-PORT = '/dev/ttys003'
-SER = serial.Serial(PORT, 9600)
+PORT = '/dev/ttys004'
+SER = serial.Serial(PORT, 19200)
+
+# sends the list with the sensors and its values back to the microcontroller
+def send_back(list):
+    list += "\n"
+    SER.write(list.encode('utf-8'))
 
 
+# processes(reads) the values from the sensors every 10s and appends the values to the dictionary of each of the sensors and appends the dictionaries to a list which is used by the send_back function
+def loop(sensor_list):
+    while True:
+        send_list_back = []
+        for sensor in sensor_list:
+            sensor_type = sensor.get('sensor_type')
+
+            if sensor_type == 'light':
+                value = int((random.uniform(0, 10)))
+            elif sensor_type == 'air_humidity':
+                value = int((random.uniform(10, 20)))
+            elif sensor_type == 'air_temperature':
+                value = int((random.uniform(20, 30)))
+            elif sensor_type == 'moisture':
+                value = int((random.uniform(30, 40)))
+            elif sensor_type == 'soil_temperature':
+                value = int((random.uniform(40, 50)))
+            elif sensor_type == 'water_flow':
+                value = int((random.uniform(50, 60)))
+            elif sensor_type == 'valve':
+                value = int((random.uniform(0, 2)))
+            else:
+                value = None
+
+            sensor["value"] = value
+            send_list_back.append(sensor)
+
+        send_json_list_back = json.dumps(send_list_back)
+
+        print(send_json_list_back + "\n") # print is temporary, just here to showcase how it works
+        send_back(send_json_list_back)
+
+        time.sleep(4)
+
+
+# receives the sensor list - parses the json string to an object - calls the loop function - handles error if nothing comes from the serial
 def read_sensor_list():
+    time.sleep(3)
     try:
-        time.sleep(2)
         sensor_list_str = SER.read_all().decode('utf-8').strip()
         sensor_list = json.loads(sensor_list_str)
-        print(sensor_list)
-        # return sensor_list
-        while True:
-            time.sleep(10)
-            for item in sensor_list:
-                sensor_type = item.get('sensor_type')
-
-                if sensor_type == 'light':
-                    value = "200"
-                elif sensor_type == 'air_temperature':
-                    value = int((random.uniform(10, 30)))
-                elif sensor_type == 'air_humidity':
-                    value = int((random.uniform(30, 40)))
-                elif sensor_type == 'moisture':
-                    value = "10"
-                elif sensor_type == 'soil_temperature':
-                    value = "23"
-                elif sensor_type == 'water_flow':
-                    value = "20"
-                elif sensor_type == 'valve':
-                    value = "0"
-                else:
-                    value = None
-                
-                print(value)
+        loop(sensor_list)
 
     except ValueError:
         print("DecodeValueError")
-        return []
 
-# def send_back(value):
-#     SER.write(f"{value}".encode())
-
-# def loop():
-#     while True:
-#         for item in read_sensor_list():
-#             sensor_type = item.get('sensor_type')
-
-#             if sensor_type == 'light':
-#                 value = "200"
-#             elif sensor_type == 'air_temperature':
-#                 value = int((random.uniform(10, 30)))
-#             elif sensor_type == 'air_humidity':
-#                 value = int((random.uniform(30, 40)))
-#             elif sensor_type == 'moisture':
-#                 value = "10"
-#             elif sensor_type == 'soil_temperature':
-#                 value = "23"
-#             elif sensor_type == 'water_flow':
-#                 value = "20"
-#             elif sensor_type == 'valve':
-#                 value = "0"
-#             else:
-#                 value = None
-            
-            # item["value"] = value
-            # print(value)
-            # values_list.append(item)
-            # send_back(item)
-
-
-        # print(values_list)
-        # return values_list
 
 def main():
-    try:
-        threading.Thread(target=read_sensor_list, daemon=True).start()
-        # threading.Thread(target=loop, daemon=True).start()
-        
-        while True:
-            time.sleep(1)
-    finally:
-        SER.close()
+        read_sensor_list()
 
 if __name__ == "__main__":
     main()
+
+#TODO change time.sleep to every 24h
+# handle if value = None
