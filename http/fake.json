@@ -1,0 +1,72 @@
+[
+    {
+        "pot_id" : 4,
+        "sensor_id" : "L01",
+        "sensor_type" : "light"
+    },
+    {
+        "pot_id" : 3,
+        "sensor_id" : "L02",
+        "sensor_type" : "light"
+    },
+    {
+        "pot_id" : 2,
+        "sensor_id" : "AH03",
+        "sensor_type" : "air_humidity"
+    },
+    {
+        "pot_id" : 1,
+        "sensor_id" : "AH04",
+        "sensor_type" : "air_humidity"
+    },
+    {
+        "pot_id" : 4,
+        "sensor_id" : "AT05",
+        "sensor_type" : "air_temperature"
+    },
+    {
+        "pot_id" : 3,
+        "sensor_id" : "AT06",
+        "sensor_type" : "air_temperature"
+    },
+    {
+        "pot_id" : 2,
+        "sensor_id" : "M07",
+        "sensor_type" : "moisture"
+    },
+    {
+        "pot_id" : 1,
+        "sensor_id" : "M08",
+        "sensor_type" : "moisture"
+    },
+    {
+        "pot_id" : 4,
+        "sensor_id" : "ST09",
+        "sensor_type" : "soil_temperature"
+    },
+    {
+        "pot_id" : 3,
+        "sensor_id" : "ST10",
+        "sensor_type" : "soil_temperature"
+    },
+    {
+        "pot_id" : 2,
+        "sensor_id" : "WF11",
+        "sensor_type" : "water_flow"
+    },
+    {
+        "pot_id" : 1,
+        "sensor_id" : "WF12",
+        "sensor_type" : "water_flow"
+    },
+    {
+        "pot_id" : 4,
+        "sensor_id" : "V13",
+        "sensor_type" : "valve"
+    },
+    {
+        "pot_id" : 3,
+        "sensor_id" : "V14",
+        "sensor_type" : "valve"
+    }
+]

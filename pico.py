@@ -1,6 +1,6 @@
 import time, json, serial, random
 
-PORT = '/dev/ttys005'
+PORT = '/dev/ttys007'
 SER = serial.Serial(PORT, 19200)
 
 # sends the list with the sensors and its values back to the microcontroller

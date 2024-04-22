@@ -13,7 +13,7 @@ CLIENT = InfluxDBClient3(host = HOST, token = TOKEN, org = ORG, database = DATAB
 
 API_URL = "http://localhost:9000/fake.json"
 
-PORT = '/dev/ttys006'
+PORT = '/dev/ttys008'
 SER = serial.Serial(PORT, 19200)
 
 
