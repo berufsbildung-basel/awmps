@@ -13,12 +13,12 @@ CLIENT = InfluxDBClient3(host = HOST, token = TOKEN, org = ORG, database = DATAB
 
 API_URL = "http://localhost:9000/fake.json"
 
-PORT = '/dev/ttys005'
+PORT = '/dev/ttys006'
 SER = serial.Serial(PORT, 19200)
 
 
 ### get json and store in list and return it
-def get_sensor_information():
+def get_sensor_list():
     sensor_list = []
     response = requests.get(API_URL)
     data = response.json()
@@ -33,7 +33,7 @@ def get_sensor_information():
 
 
 # write sensor list to pico
-def send_sensor_info_list(sensor_list):
+def send_sensor_list(sensor_list):
     try:
         SER.write(f"{sensor_list}".encode('utf-8'))
     
@@ -42,48 +42,54 @@ def send_sensor_info_list(sensor_list):
             x = ser.read()
 
 
-# read data that is sent from pico and writes to tsdb
-def receive_data_and_write_to_tsdb():
+# read the sensor list values one by one and writes them to the tsdb by making data points
+def tsdb(sensor_list):
+    for sensor in sensor_list:
+        sensor_id = sensor.get("sensor_id")
+        pot_id = sensor.get("pot_id")
+        sensor_type = sensor.get("sensor_type")
+        value = sensor.get("value")
+
+
+        data_point = {
+        "point": {
+            "sensor_id" : sensor_id,
+            "pot_id" : pot_id,
+            "sensor_type" : sensor_type,
+            "value" : value,
+        }
+        }
+
+        print(data_point)
+        for key in data_point:
+            point = (
+                Point(MEASUREMENT)
+                .tag("sensor_id", data_point[key]["sensor_id"])
+                .tag("pot_id", data_point[key]["pot_id"])
+                .tag("sensor_type", data_point[key]["sensor_type"])
+                .field("value", data_point[key]["value"])
+            )
+
+            CLIENT.write(point)
+
+
+# while loop reading the sensor data until it reaches "\n", otherwise handles json error
+# 2 while loops required because we send the sensor list with values by doing this: list = "\n" + list + "\n", this way we handle the first "\n" as an error and the second is required for the read_until()
+def receive_sensor_list():
     while True:
-        data = SER.read_until().decode("utf-8")
-        print(data)
+        try:
+            while True:
+                sensor_list_with_values = SER.read_until().decode("utf-8")
+                sensor_list = json.loads(sensor_list_with_values)
+                tsdb(sensor_list)
 
-
-# def tsdb():
-#     for sensor in receive_data_and_write_to_tsdb:
-#         sensor_id = sensor.get("sensor_id")
-#         pot_id = sensor.get("pot_id")
-#         sensor_type = sensor.get("sensor_type")
-#         value = sensor.get("value")
-
-#         print(sensor_id = sensor.get("sensor_id"))
-        # data_point = {
-        # "point": {
-        #     "sensor_id" : sensor_id,
-        #     "pot_id" : pot_id,
-        #     "sensor_type" : sensor_type,
-        #     "value" : value,
-        # }
-        # }
-
-        # for key in data_point:
-        #     point = (
-        #         Point(MEASUREMENT)
-        #         .tag("sensor_id", data_point[key]["sensor_id"])
-        #         .tag("pot_id", data_point[key]["pot_id"])
-        #         .tag("sensor_type", data_point[key]["sensor_type"])
-        #         .field("value", data_point[key]["value"])
-        #     )
-
-        #     CLIENT.write(point)
-    
+        except ValueError:
+            print("DecodeValueError")
 
 def main():
-    sensor_list = get_sensor_information()
-    send_sensor_info_list(sensor_list)
-
-    receive_data_and_write_to_tsdb()
-
+    sensor_list = get_sensor_list()
+    send_sensor_list(sensor_list)
+    receive_sensor_list()
 
 if __name__ == "__main__":
     main()
