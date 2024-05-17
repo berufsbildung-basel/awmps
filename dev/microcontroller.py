@@ -10,11 +10,10 @@ INFLUX_HOST = os.getenv('host')
 INFLUX_DATABASE = os.getenv('database')
 INFLUX_MEASUREMENT = os.getenv('measurement')
 INFLUX_CLIENT = InfluxDBClient3(os.getenv('client'))
-
 API_URL = os.getenv('api_url')
 
-PORT = '/dev/ttys007'
-BAUDRATE = 19200
+PORT = os.getenv('port-microcontroller')
+BAUDRATE = os.getenv('baudrate')
 SER = serial.Serial(PORT, BAUDRATE)
 
 

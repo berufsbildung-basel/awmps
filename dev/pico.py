@@ -1,9 +1,11 @@
-import time, json, serial, random
+import time, json, serial, random, os
+from dotenv import load_dotenv
 
-PORT = '/dev/ttys004'
-BAUDRATE = 19200
+load_dotenv()
+
+PORT = os.getenv('port-pico')
+BAUDRATE = os.getenv('baudrate')
 SER = serial.Serial(PORT, BAUDRATE)
-
 
 # sends the list with the sensors and its values back to the microcontroller
 def send_back(list):
