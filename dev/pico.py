@@ -1,7 +1,9 @@
 import time, json, serial, random
 
-PORT = '/dev/ttys007'
-SER = serial.Serial(PORT, 19200)
+PORT = '/dev/ttys004'
+BAUDRATE = 19200
+SER = serial.Serial(PORT, BAUDRATE)
+
 
 # sends the list with the sensors and its values back to the microcontroller
 def send_back(list):
@@ -37,11 +39,11 @@ def loop(sensor_list):
             send_list_back.append(sensor)
 
         send_json_list_back = json.dumps(send_list_back)
-
-        print(send_json_list_back + "\n") # print is temporary, just here to showcase how it works
+        
+        print(send_json_list_back + "\n") ### remove later
         send_back(send_json_list_back)
 
-        time.sleep(4) #change to 10 later
+        time.sleep(10)
 
 
 # receives the sensor list - parses the json string to an object - calls the loop function - handles error if nothing comes from the serial
@@ -61,6 +63,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-#TODO change time.sleep to every 24h
-# handle if value = None
