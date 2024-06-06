@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style_home.css">
+    <script src="/js/fetch.js" defer></script>
+    <title>AWMPS</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo" onclick="toggleNav()">
+            <img src="/images/awmps_logo.png" alt="AWMPS Logo">
+        </div>
+        <h1>AWMPS</h1>  
+        <button data-open-modal class="settings-button">
+            <div class="settings-logo">
+                <img src="/images/settings_icon.png" alt="Settings">
+            </div> 
+        </button>    
+        <dialog data-modal class="dialog">
+            <button data-close-modal>Close</button>
+            <button>Add pot</button>
+        </dialog>
+    </header>
+    <nav id="sideNav" class="side-nav">
+        <a href="home_page.html">Home</a>
+        <a href="watering.html">Watering&nbsp;Schedule</a>
+        <a href="notifs.html">Notifications</a>
+        <a href="users.html">Users</a>
+        <a href="account.html">Account</a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="login.html">Log-in</a>
+    </nav>
+    <div class="main-content">
+        <div class="pot-container">
+            <div class="pot" onclick="window.location.href ='pots.html'" id="pot1">Topf 1</div>
+            <div class="pot" id="pot2">Topf 2</div>
+            <div class="pot" id="pot3">Topf 3</div>
+            <div class="pot" id="pot4">Topf 4</div> 
+        </div>
+        <div id="settingsMenu" class="settings-menu">
+            <dialog id="dialog">I'm a dialog</dialog>
+            <button onclick="toggleDialog()">This button toggles a dialog</button>
+        </div>
+    </div>
+    <footer>
+        <div class="humidity">
+            <span class="status-icon humidity-icon"></span>
+            <span class="status-value">55%</span>
+            <span class="status-label">humidity</span>
+        </div>
+        <div class="temperature">
+            <span class="status-icon temperature-icon"></span>
+            <span class="status-value">15°C</span>
+        </div>
+        <div class="light">
+            <span class="status-icon sunlight-icon"></span>
+            <span class="status-value">200lx</span>
+        </div>
+    </footer> 
+</body>
+</html>

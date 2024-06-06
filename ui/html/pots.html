@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style_home.css">
+    <script src="/js/fetch.js" defer></script>
+    <title>AWMPS</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo" onclick="toggleNav()">
+            <img src="/images/awmps_logo.png" alt="AWMPS Logo">
+        </div>
+        <h1>AWMPS</h1>
+        <div class="settings-logo" onclick="toggleSettings()">
+            <img src="/images/settings_icon.png" alt="Settings">
+        </div>
+    </header>
+
+    <nav id="sideNav" class="side-nav">
+        <a href="home_page.html">Home</a>
+        <a href="watering.html">Watering&nbsp;Schedule</a>
+        <a href="notifs.html">Notifications</a>
+        <a href="users.html">Users</a>
+        <a href="account.html">Account</a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="login.html">Log-out</output></a>
+    </nav>
+
+    <div class="main-content">
+        <div class="pot-container">
+            <div data-pot-id="1" class="pot" id="pot1">data</div>
+            <div data-pot-id="2" class="pot" id="pot2">data</div>
+            <div data-pot-id="3" class="pot" id="pot3">data</div>
+            <div data-pot-id="4" class="pot" id="pot4">data</div>
+        </div>
+        <!-- <div id="settingsMenu" class="settings-menu">
+            <button onclick="addPot()">Add Pot</button>
+            <button onclick="removePot()">Remove Pot</button>
+        </div> -->
+    </div>
+
+    <footer>
+        <div class="humidity">
+            <span class="status-icon humidity-icon"></span>
+            <span class="status-value">55%</span>
+            <span class="status-label">humidity</span>
+        </div>
+        <div class="temperature">
+            <span class="status-icon temperature-icon"></span>
+            <span class="status-value">15°C</span>
+        </div>
+        <div class="light">
+            <span class="status-icon sunlight-icon"></span>
+            <span class="status-value">200lx</span>
+        </div>
+    </footer>
+</body>
+</html>
