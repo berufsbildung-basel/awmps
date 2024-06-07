@@ -1,14 +1,24 @@
-import os, requests, json
-from dotenv import load_dotenv
-
-load_dotenv()
-RULES_ENDPOINT = os.getenv('rules_url')
-
+import accessors, rule
 
 class Service():
-    def waterService():
-        # if currentRainProbability > 
-        print("water")
+    def waterService(self):
+        ruleID = accessor.getRulesID()
+        #sample data below
+        currentRainProbability = 300
+        currentHumidity = 25
+        currentLux = 190
+
+        def disapprove(ruleID, reason):
+            print(f"Rule with id {ruleID} not approved because {reason} is not in range")
+
+        if not (accessor.getMinRainProbability() <= currentRainProbability <= accessor.getMaxRainProbability()):
+            disapprove(ruleID, "rain probability")
+        elif not (accessor.getMinHumidity() <= currentHumidity <= accessor.getMaxHumidity()):
+            disapprove(ruleID, "humidity")
+        elif not (accessor.getMinLux() <= currentLux <= accessor.getMaxLux()):
+            disapprove(ruleID, "lux")
+        else:
+            print("within range")
 
     def schedulingService():
         print("schedule")
@@ -16,6 +26,12 @@ class Service():
     def sensorService():
         print("sensors")
 
+
+createform = rule.Rule().extractRule()
+accessor = accessors.Accessors(*createform)
+
+serviceInstance = Service()
+serviceInstance.waterService()
 
 
 

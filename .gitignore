@@ -1,5 +1,4 @@
 dev/.env
 dev/pids.txt
-
-
+dev/rules/__pycache__
 prod/.env

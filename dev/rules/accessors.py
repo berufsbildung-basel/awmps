@@ -61,14 +61,25 @@ class Accessors:
     def getMaxLux(self):
         return self.maxLux
 
-    def waterService(self):
-        currentRainProbability = 30
+    def waterChecker(self):
+        ruleID = self.getRulesID()
+        #sample data below
+        currentRainProbability = 300
+        currentHumidity = 25
+        currentLux = 190
+
+        def disapprove(ruleID, reason):
+            print(f"Rule with id {ruleID} not approved because {reason} is not in range")
+
         if not (self.getMinRainProbability() <= currentRainProbability <= self.getMaxRainProbability()):
-            print ("deny")
+            disapprove(ruleID, "rain probability")
+        elif not (self.getMinHumidity() <= currentHumidity <= self.getMaxHumidity()):
+            disapprove(ruleID, "humidity")
+        elif not (self.getMinLux() <= currentLux <= self.getMaxLux()):
+            disapprove(ruleID, "lux")
         else:
             print("within range")
 
 createform = rule.Rule().extractRule()
 accessorInstance = Accessors(*createform)
-# print(accessorInstance.getMaxRainProbability())
-accessorInstance.waterService()
+accessorInstance.waterChecker()
