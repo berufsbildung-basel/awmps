@@ -9,7 +9,7 @@ INFLUX_ORG = os.getenv('org')
 INFLUX_HOST = os.getenv('host')
 INFLUX_DATABASE = os.getenv('database')
 INFLUX_MEASUREMENT = os.getenv('measurement')
-INFLUX_CLIENT = InfluxDBClient3(os.getenv('client'))
+INFLUX_CLIENT = InfluxDBClient3(host = INFLUX_HOST, token = INFLUX_TOKEN, org = INFLUX_ORG, database = INFLUX_DATABASE, verify_ssl = False)
 API_URL = os.getenv('api_url')
 
 PORT = os.getenv('port-microcontroller')

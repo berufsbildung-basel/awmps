@@ -1,11 +1,12 @@
 [
     {
+        "created_at" : "01-03-2024",
         "rules_id" : 1,
         "pot_id" : 2,
         "zone_id" : 3,
         "duration" : 60,
         "action" : "water",
-        "schedule" : "cronjob",
+        "schedule" : "0 10 * * *",
         "enabled" : true,
         "rain_probability_min" : 0,
         "rain_probability_max" : 40,
@@ -15,12 +16,13 @@
         "lux_max" : 250
     },
     {
+        "created_at" : "01-04-2024",
         "rules_id" : 4,
         "pot_id" : 5,
         "zone_id" : 1,
         "duration" : 30,
         "action" : "water",
-        "schedule" : "cronjob",
+        "schedule" : "30 13 * * *",
         "enabled" : true,
         "rain_probability_min" : 5,
         "rain_probability_max" : 25,
