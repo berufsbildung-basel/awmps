@@ -4,29 +4,46 @@ from dotenv import load_dotenv
 load_dotenv()
 RULES_ENDPOINT = os.getenv('rules_url')
 
-#TODO add error handling for e.g. for network errors + validation
 class Rule:
     @staticmethod
     def getRulesList():
-        rules_list = []
+        rulesList = []
         try:
             response = requests.get(RULES_ENDPOINT)
             response.raise_for_status()
             data = response.json()
             for item in data:
-                rules_list.append(item)
+                rulesList.append(item)
         except requests.RequestException as e:
             print(f"Network error: {e}")
         except ValueError as e:
             print(f"JSON decode error: {e}")
-        return rules_list
+        return rulesList
+    
+# Extract a single rule from the list of rules and store it in a dictionary
+    def extractRule(self):
+        rulesList = self.getRulesList()
+        singleRule = {}
+        for rule in rulesList[:]: 
 
-    def ListOfRules(self):
-        rules_list = self.getRulesList()
-        for rule in rules_list:
-            rule['rules_id']
-            print(rule)
+            if rule['rules_id'] != 1:
+                print(f"No rule with id {rule['rules_id']} found")
 
-# can only return 1 rule
-rule_instance = Rule()
-rule_instance.ListOfRules()
+            elif rule['rules_id'] == 1:
+                rulesList.remove(rule)
+                singleRule.update(rule)
+                singleRule2 = singleRule.values()
+                return list(singleRule2)
+
+    def createFrom(self, singleRule):
+        print(singleRule)
+
+    # def createFrom2(self):
+    #     singleRule = self.extractRule()
+    #     print(singleRule)
+
+
+ruleInstance = Rule()
+ruleInstance.extractRule()
+# ruleInstance.createFrom(ruleInstance.extractRule())
+# ruleInstance.createFrom2()

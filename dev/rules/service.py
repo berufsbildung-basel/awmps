@@ -7,6 +7,7 @@ RULES_ENDPOINT = os.getenv('rules_url')
 
 class Service():
     def waterService():
+        # if currentRainProbability > 
         print("water")
 
     def schedulingService():
