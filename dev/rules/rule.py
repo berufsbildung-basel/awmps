@@ -1,4 +1,4 @@
-import rule, time, apscheduler, logging, service
+import rule, time, apscheduler, logging
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 
@@ -20,14 +20,20 @@ class Rule:
         self.maxLux = maxLux
 
     def inRange(self):
-        ruleID = self.rulesID()
+        ruleID = self.rulesID
+        potID = self.potID
+        zoneID = self.zoneID
         #sample data below
         currentRainProbability = 300
         currentHumidity = 25
         currentLux = 190
 
-        def disapprove(ruleID, reason):
-            print(f"Rule with id {ruleID} not approved because {reason} is not in range")
+        def disapprove(ruleID, key):
+            print(f"Rule with id {ruleID} not approved because {key} is not in range")
+            return ruleID
+#nesh ne stima tuka
+        def approve(ruleID, potID, zoneID):
+            return ruleID, potID, zoneID
 
         if not (self.minRainProbability <= currentRainProbability <= self.maxRainProbability):
             disapprove(ruleID, "rain probability")
@@ -37,28 +43,4 @@ class Rule:
             disapprove(ruleID, "lux")
         else:
             print("within range")
-
-    def setSchedule(self):
-        schedule = self.schedule
-        scheduler = BackgroundScheduler()
-
-        trigger = CronTrigger.from_crontab(schedule)
-
-        scheduler.add_job(serviceInstance.execute, trigger)
-
-        try:
-            scheduler.start()
-            while True:
-                time.sleep(1)
-        except (KeyboardInterrupt, SystemExit):
-            scheduler.shutdown()
-
-    logging.basicConfig()
-    logging.getLogger('apscheduler').setLevel(logging.DEBUG)
-
-    
-serviceInstance = service.Service()
-extractRule = serviceInstance.extractRuleService()
-
-ruleInstance = Rule(*extractRule)
-ruleInstance.setSchedule()
+            return approve(ruleID, potID, zoneID)

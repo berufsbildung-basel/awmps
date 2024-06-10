@@ -1,4 +1,7 @@
-import os, requests, json
+import os, requests, time, logging
+from rule import Rule
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -37,6 +40,24 @@ class Service():
 
     def execute(self):
         return print("\napprove\n")
+
+    #set a schedule
+    def scheduleService(self):
+        schedule = Rule(*Service().extractRuleService()).schedule
+        scheduler = BackgroundScheduler()
+
+        trigger = CronTrigger.from_crontab(schedule)
+
+        scheduler.add_job(self.execute, trigger)
+
+        logging.basicConfig()
+        logging.getLogger('apscheduler').setLevel(logging.DEBUG)
         
-serviceInstance = Service()
-serviceInstance.extractRuleService()
+        try:
+            scheduler.start()
+            while True:
+                time.sleep(1)
+        except (KeyboardInterrupt, SystemExit):
+            scheduler.shutdown()
+
+# Service().scheduleService()
