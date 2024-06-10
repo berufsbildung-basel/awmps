@@ -1,5 +1,7 @@
 import rule
-
+import apscheduler, logging
+from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.triggers.cron import CronTrigger
 
 class Accessors:
     def __init__(self, createdAt,rulesID, potID, zoneID, duration, action, schedule, enabled, minRainProbability, 
@@ -61,7 +63,7 @@ class Accessors:
     def getMaxLux(self):
         return self.maxLux
 
-    def waterChecker(self):
+    def inRange(self):
         ruleID = self.getRulesID()
         #sample data below
         currentRainProbability = 300
@@ -80,6 +82,28 @@ class Accessors:
         else:
             print("within range")
 
-createform = rule.Rule().extractRule()
-accessorInstance = Accessors(*createform)
-accessorInstance.waterChecker()
+    def temporary_approval(self):
+        print("approve")
+        return "approve"
+
+    def setSchedule(self):
+        schedule = self.getSchedule()
+        scheduler = BlockingScheduler()
+
+        trigger = CronTrigger.from_crontab(schedule)
+
+        scheduler.add_job(self.temporary_approval, trigger)
+
+        try:
+            scheduler.start()
+        except (KeyboardInterrupt, SystemExit):
+            pass
+
+
+if __name__ == "__main__":
+    logging.basicConfig()
+    logging.getLogger('apscheduler').setLevel(logging.DEBUG)
+
+    createform = rule.Rule().extractRule()
+    accessorInstance = Accessors(*createform)
+    accessorInstance.setSchedule()

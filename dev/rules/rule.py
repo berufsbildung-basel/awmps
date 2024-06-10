@@ -42,8 +42,8 @@ class Rule:
     #     singleRule = self.extractRule()
     #     print(singleRule)
 
-
-ruleInstance = Rule()
-ruleInstance.extractRule()
-# ruleInstance.createFrom(ruleInstance.extractRule())
-# ruleInstance.createFrom2()
+if __name__ == "__main__":
+    ruleInstance = Rule()
+    ruleInstance.extractRule()
+    # ruleInstance.createFrom(ruleInstance.extractRule())
+    # ruleInstance.createFrom2()

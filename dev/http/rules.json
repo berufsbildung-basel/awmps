@@ -6,7 +6,7 @@
         "zone_id" : 3,
         "duration" : 60,
         "action" : "water",
-        "schedule" : "0 10 * * *",
+        "schedule" : "*/1 * * * *",
         "enabled" : true,
         "rain_probability_min" : 0,
         "rain_probability_max" : 40,
