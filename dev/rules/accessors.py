@@ -1,6 +1,5 @@
-import rule
-import apscheduler, logging
-from apscheduler.schedulers.blocking import BlockingScheduler
+import rule, time, apscheduler, logging
+from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 
 class Accessors:
@@ -83,12 +82,11 @@ class Accessors:
             print("within range")
 
     def temporary_approval(self):
-        print("approve")
-        return "approve"
+        return print("\napprove\n")
 
     def setSchedule(self):
         schedule = self.getSchedule()
-        scheduler = BlockingScheduler()
+        scheduler = BackgroundScheduler()
 
         trigger = CronTrigger.from_crontab(schedule)
 
@@ -96,8 +94,11 @@ class Accessors:
 
         try:
             scheduler.start()
+            while True:
+                time.sleep(1)
         except (KeyboardInterrupt, SystemExit):
-            pass
+            scheduler.shutdown()
+
 
 if __name__ == "__main__":
     logging.basicConfig()
