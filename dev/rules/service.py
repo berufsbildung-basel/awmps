@@ -1,6 +1,9 @@
 import accessors, rule
 
 class Service():
+    def execute(self):
+        return print("\napprove\n")
+        
     def schedulingService():
         print("schedule")
 

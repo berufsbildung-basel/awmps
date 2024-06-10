@@ -1,10 +1,9 @@
-import rule, time, apscheduler, logging
+import rule, time, apscheduler, logging, service
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 
 class Accessors:
-    def __init__(self, createdAt,rulesID, potID, zoneID, duration, action, schedule, enabled, minRainProbability, 
-    maxRainProbability, minHumidity, maxHumidity, minLux, maxLux):
+    def __init__(self, createdAt,rulesID, potID, zoneID, duration, action, schedule, enabled, minRainProbability, maxRainProbability, minHumidity, maxHumidity, minLux, maxLux):
         self.createdAt = createdAt
         self.rulesID = rulesID
         self.potID = potID
@@ -20,6 +19,7 @@ class Accessors:
         self.minLux = minLux
         self.maxLux = maxLux
 
+#are there even neccessary? since they're all returns, i can just access them all by "self.{name}"
     def isEnabled(self):
         return self.enabled
 
@@ -81,16 +81,13 @@ class Accessors:
         else:
             print("within range")
 
-    def temporary_approval(self):
-        return print("\napprove\n")
-
     def setSchedule(self):
         schedule = self.getSchedule()
         scheduler = BackgroundScheduler()
 
         trigger = CronTrigger.from_crontab(schedule)
 
-        scheduler.add_job(self.temporary_approval, trigger)
+        scheduler.add_job(serviceInstance.execute, trigger)
 
         try:
             scheduler.start()
@@ -104,6 +101,10 @@ if __name__ == "__main__":
     logging.basicConfig()
     logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
-    createform = rule.Rule().extractRule()
-    accessorInstance = Accessors(*createform)
+    ruleInstance = rule.Rule()
+    extractRule = ruleInstance.extractRule()
+    
+    accessorInstance = Accessors(*extractRule)
+    serviceInstance = service.Service()
+
     accessorInstance.setSchedule()
