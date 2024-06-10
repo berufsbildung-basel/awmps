@@ -53,13 +53,12 @@ class Rule:
         except (KeyboardInterrupt, SystemExit):
             scheduler.shutdown()
 
-if __name__ == "__main__":
     logging.basicConfig()
     logging.getLogger('apscheduler').setLevel(logging.DEBUG)
 
     
-    serviceInstance = service.Service()
-    extractRule = serviceInstance.extractRuleService()
-    
-    ruleInstance = Rule(*extractRule)
-    ruleInstance.setSchedule()
+serviceInstance = service.Service()
+extractRule = serviceInstance.extractRuleService()
+
+ruleInstance = Rule(*extractRule)
+ruleInstance.setSchedule()
