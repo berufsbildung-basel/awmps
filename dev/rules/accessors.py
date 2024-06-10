@@ -99,7 +99,6 @@ class Accessors:
         except (KeyboardInterrupt, SystemExit):
             pass
 
-
 if __name__ == "__main__":
     logging.basicConfig()
     logging.getLogger('apscheduler').setLevel(logging.DEBUG)
