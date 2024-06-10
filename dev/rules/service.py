@@ -41,7 +41,7 @@ class Service():
     def execute(self):
         return print("\napprove\n")
 
-    #set a schedule
+    #sets a schedule (aka cronjob) and logs everything
     def scheduleService(self):
         schedule = Rule(*Service().extractRuleService()).schedule
         scheduler = BackgroundScheduler()
@@ -59,5 +59,3 @@ class Service():
                 time.sleep(1)
         except (KeyboardInterrupt, SystemExit):
             scheduler.shutdown()
-
-# Service().scheduleService()

@@ -21,8 +21,6 @@ class Rule:
 
     def inRange(self):
         ruleID = self.rulesID
-        potID = self.potID
-        zoneID = self.zoneID
         #sample data below
         currentRainProbability = 300
         currentHumidity = 25
@@ -30,17 +28,17 @@ class Rule:
 
         def disapprove(ruleID, key):
             print(f"Rule with id {ruleID} not approved because {key} is not in range")
-            return ruleID
-#nesh ne stima tuka
-        def approve(ruleID, potID, zoneID):
-            return ruleID, potID, zoneID
+            return 1
+
+        def approve(ruleID):
+            print(f"Rule with id {ruleID} approved and is in range")
+            return 2
 
         if not (self.minRainProbability <= currentRainProbability <= self.maxRainProbability):
-            disapprove(ruleID, "rain probability")
+            return disapprove(ruleID, "rain probability")
         elif not (self.minHumidity <= currentHumidity <= self.maxHumidity):
-            disapprove(ruleID, "humidity")
+            return disapprove(ruleID, "humidity")
         elif not (self.minLux <= currentLux <= self.maxLux):
-            disapprove(ruleID, "lux")
+            return disapprove(ruleID, "lux")
         else:
-            print("within range")
-            return approve(ruleID, potID, zoneID)
+            return approve(ruleID)

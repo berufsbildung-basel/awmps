@@ -1,5 +1,11 @@
 from rule import Rule
 from service import Service
 
-ruleInstance = Rule(*Service().extractRuleService())
-Service().scheduleService()
+# Service().scheduleService()
+ruleInstance =  Rule(*Service().extractRuleService())
+inrange = ruleInstance.inRange()
+
+if inrange == 1:
+    print("deny")
+elif inrange == 2:
+    print("accept")
