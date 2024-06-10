@@ -1,38 +1,42 @@
-import accessors, rule
+import os, requests, json
+from dotenv import load_dotenv
+
+load_dotenv()
+RULES_ENDPOINT = os.getenv('rules_url')
 
 class Service():
+    @staticmethod
+    def getRulesListService():
+        rulesList = []
+        try:
+            response = requests.get(RULES_ENDPOINT)
+            response.raise_for_status()
+            data = response.json()
+            for item in data:
+                rulesList.append(item)
+        except requests.RequestException as e:
+            print(f"Network error: {e}")
+        except ValueError as e:
+            print(f"JSON decode error: {e}")
+        return rulesList
+    
+# Extract a single rule from the list of rules and store it in a dictionary
+    def extractRuleService(self):
+        rulesList = self.getRulesListService()
+        singleRule = {}
+        for rule in rulesList[:]: 
+
+            if rule['rules_id'] != 1:
+                print(f"No rule with id {rule['rules_id']} found")
+
+            elif rule['rules_id'] == 1:
+                rulesList.remove(rule)
+                singleRule.update(rule)
+                singleRuleValues = singleRule.values()
+                return list(singleRuleValues)
+
     def execute(self):
         return print("\napprove\n")
         
-    def schedulingService():
-        print("schedule")
-
-    def sensorService():
-        print("sensors")
-
-
-# class Rule:
-#   def getSchedule():
-#   def execute():
-
-# Create a rule object  via static method  on the Rule class, does validation
-# rule = Rule.createFrom(ruleJSON);
-
-# if rule.isEnabled()
-#   addJob(rule);
-
-
-# some other file...
-# addJob(rule):
-#   mySchedulingApi.scheduleTask(rule.getSchedule().toCtron())
-    # scheduler calls rule.execute();
-
-# rule.execute::
-# - check conditiations against rule? ranges of temp/humidity, etc.
-# - if in range, waterService.water(rule.getDuration())
-# current_zone_temperature = sensorService.getTemperature(rule.getZoneID())
-# current_zone_rh = sensorService.getHunidity(rule.getZoneID())
-# current_oat = sensorService.getOutsideAirTemperature()
-# current_orh = sensorService.getOutsideRelativeHumidity()
-# if (....)
-#   waterService.water(rule.getDuration())
+serviceInstance = Service()
+serviceInstance.extractRuleService()
