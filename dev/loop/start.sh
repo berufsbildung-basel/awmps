@@ -4,7 +4,7 @@ kill $(lsof -t -i :9000)
 
 > pids.txt
 
-(cd http && python3 -m http.server 9000) & echo $! >> pids.txt
+(cd ../http && python3 -m http.server 9000) & echo $! >> pids.txt
 
 sleep 2
 
