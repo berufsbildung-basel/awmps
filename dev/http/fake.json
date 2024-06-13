@@ -1,72 +1,72 @@
 [
     {
-        "pot_id" : 4,
-        "sensor_id" : "L01",
-        "sensor_type" : "light"
+        "potID" : 4,
+        "sensorID" : "L01",
+        "sensorType" : "light"
     },
     {
-        "pot_id" : 3,
-        "sensor_id" : "L02",
-        "sensor_type" : "light"
+        "potID" : 3,
+        "sensorID" : "L02",
+        "sensorType" : "light"
     },
     {
-        "pot_id" : 2,
-        "sensor_id" : "AH03",
-        "sensor_type" : "air_humidity"
+        "potID" : 2,
+        "sensorID" : "AH03",
+        "sensorType" : "airHumidity"
     },
     {
-        "pot_id" : 1,
-        "sensor_id" : "AH04",
-        "sensor_type" : "air_humidity"
+        "potID" : 1,
+        "sensorID" : "AH04",
+        "sensorType" : "airHumidity"
     },
     {
-        "pot_id" : 4,
-        "sensor_id" : "AT05",
-        "sensor_type" : "air_temperature"
+        "potID" : 4,
+        "sensorID" : "AT05",
+        "sensorType" : "airTemperature"
     },
     {
-        "pot_id" : 3,
-        "sensor_id" : "AT06",
-        "sensor_type" : "air_temperature"
+        "potID" : 3,
+        "sensorID" : "AT06",
+        "sensorType" : "airTemperature"
     },
     {
-        "pot_id" : 2,
-        "sensor_id" : "M07",
-        "sensor_type" : "moisture"
+        "potID" : 2,
+        "sensorID" : "M07",
+        "sensorType" : "moisture"
     },
     {
-        "pot_id" : 1,
-        "sensor_id" : "M08",
-        "sensor_type" : "moisture"
+        "potID" : 1,
+        "sensorID" : "M08",
+        "sensorType" : "moisture"
     },
     {
-        "pot_id" : 4,
-        "sensor_id" : "ST09",
-        "sensor_type" : "soil_temperature"
+        "potID" : 4,
+        "sensorID" : "ST09",
+        "sensorType" : "soilTemperature"
     },
     {
-        "pot_id" : 3,
-        "sensor_id" : "ST10",
-        "sensor_type" : "soil_temperature"
+        "potID" : 3,
+        "sensorID" : "ST10",
+        "sensorType" : "soilTemperature"
     },
     {
-        "pot_id" : 2,
-        "sensor_id" : "WF11",
-        "sensor_type" : "water_flow"
+        "potID" : 2,
+        "sensorID" : "WF11",
+        "sensorType" : "waterFlow"
     },
     {
-        "pot_id" : 1,
-        "sensor_id" : "WF12",
-        "sensor_type" : "water_flow"
+        "potID" : 1,
+        "sensorID" : "WF12",
+        "sensorType" : "waterFlow"
     },
     {
-        "pot_id" : 4,
-        "sensor_id" : "V13",
-        "sensor_type" : "valve"
+        "potID" : 4,
+        "sensorID" : "V13",
+        "sensorType" : "valve"
     },
     {
-        "pot_id" : 3,
-        "sensor_id" : "V14",
-        "sensor_type" : "valve"
+        "potID" : 3,
+        "sensorID" : "V14",
+        "sensorType" : "valve"
     }
 ]
