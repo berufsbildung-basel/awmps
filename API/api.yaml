@@ -1,0 +1,553 @@
+openapi: 3.0.0
+info:
+  title: awmps-api
+  version: 1.0.4
+paths:
+  /pot_types:
+    get:
+      summary: Get a list of all pot types
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/pot_type'
+    post:
+      summary: Create a new pot type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pot_type'
+      responses:
+        '201':
+          description: Pot Type created successfully
+  /pot_types/{id}:
+    get:
+      summary: Get details of a specific pot type
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pot_type'
+    put:
+      summary: Update a specific pot type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pot_type'
+      responses:
+        '200':
+          description: Pot Type updated successfully
+    delete:
+      summary: Delete a specific pot type
+      responses:
+        '204':
+          description: Pot Type deleted successfully
+  /users:
+    get:
+      summary: Get a list of all users
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+    post:
+      summary: Create a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '201':
+          description: User created successfully
+  /users/{username}:
+    get:
+      summary: Get details of a specific user
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+    put:
+      summary: Update a specific user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        '201':
+          description: User updated successfully
+    delete:
+      summary: Delete a specific user
+      responses:
+        '204':
+          description: User deleted successfully
+  /user_settings:
+    get:
+      summary: Get a list of all user settings
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user_settings'
+    post:
+      summary: Add a user setting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user_settings'
+      responses:
+        '201':
+          description: Successfully created a user setting
+  /user_settings/{id}:
+    get:
+      summary: Get details of a specific user's settings
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user_settings'
+    put:
+      summary: Update a specific user's settings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user_settings'
+      responses:
+        '200':
+          description: User settings updated successfully
+    delete:
+      summary: Delete a specific user's settings
+      responses:
+        '204':
+          description: User settings deleted successfully
+  /pots:
+    get:
+      summary: Get a list of pots
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/pot'
+    post:
+      summary: Create a new pot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pot'
+      responses:
+        '201':
+          description: Pot created successfully
+  /pots/{id}:
+    get:
+      summary: Get details of a specific pot
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pot'
+    put:
+      summary: Update a specific pot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/pot'
+      responses:
+        '200':
+          description: Pot updated successfully
+    delete:
+      summary: Delete a specific pot
+      responses:
+        '204':
+          description: Pot deleted successfully
+  /zone:
+    get:
+      summary: Get a list of all zones
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/zone'
+    post:
+      summary: Create a new zone
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/zone'
+      responses:
+        '201':
+          description: Zone created successfully
+  /zone/{id}:
+    get:
+      summary: Get details of a specific zone
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/zone'
+    put:
+      summary: Update a specific zone
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/zone'
+      responses:
+        '200':
+          description: Zone updated successfully
+    delete:
+      summary: Delete a specific zone
+      responses:
+        '204':
+          description: Zone deleted successfully
+  /sensors:
+    get:
+      summary: Get a list of all sensors
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/sensor'
+    post:
+      summary: Create a new sensor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensor'
+      responses:
+        '201':
+          description: Sensor created successfully
+  /sensors/{id}:
+    get:
+      summary: Get details of a specific sensor
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sensor'
+    put:
+      summary: Update a specific sensor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensor'
+      responses:
+        '200':
+          description: Sensor updated successfully
+    delete:
+      summary: Delete a specific sensor
+      responses:
+        '204':
+          description: Sensor deleted successfully
+  /sensor_types:
+    get:
+      summary: Get details of all sensor types
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/sensor_type'
+    post:
+      summary: Add a sensor type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensor_type'
+      responses:
+        '201':
+          description: Sensor type added successfully
+  /sensor_types/{id}:
+    get:
+      summary: Get details of a specific sensor type
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sensor_type'
+    put:
+      summary: Update a specific sensor type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sensor_type'
+      responses:
+        '204':
+          description: Sensor type updated successfully
+    delete:
+      summary: Delete a specific sensor type
+      responses:
+        '204':
+          description: Sensor type deleted successfully
+  /commands:
+    get:
+      summary: Get a list of all commands
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/command'
+    post:
+      summary: Create a new command
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/command'
+      responses:
+        '201':
+          description: Command created successfully
+  /commands/{id}:
+    get:
+      summary: Get details of a specific command
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/command'
+    put:
+      summary: Update a specific command
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/command'
+      responses:
+        '200':
+          description: Command updated successfully
+    delete:
+      summary: Delete a specific command
+      responses:
+        '204':
+          description: Command deleted successfully
+  /rules:
+    get:
+      summary: Get a list of all rules
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/rule'
+    post:
+      summary: Create a new rule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rule'
+      responses:
+        '201':
+          description: Rule created successfully
+  /rules/{id}:
+    get:
+      summary: Get details of a specific rule
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rule'
+    put:
+      summary: Update a specific rule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rule'
+      responses:
+        '200':
+          description: Rule updated successfully
+    delete:
+      summary: Delete a specific rule
+      responses:
+        '204':
+          description: Rule deleted successfully
+
+components:
+  schemas:
+    users:
+      properties:
+        password:
+          type: string
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        role:
+          type: integer
+        disabled:
+          type: boolean
+        last_signed:
+          type: string
+          format: date
+        User_setting:
+          type: integer
+    user_settings:
+      properties:
+        notification:
+          type: boolean
+        pot_watering_notification:
+          type: boolean
+        low_moisture_notification:
+          type: boolean
+        zone_watering_schedule_notification_10min:
+          type: boolean
+        pot_watering_schedule_notification_10min:
+          type: boolean
+        low_moisture_notification:
+          type: int
+        low_temperature_notification:
+          type: int
+        low_soil_temperature_notification:
+          type: int
+    pot:
+      properties:
+        name:
+          type: string
+        pot_type_id:
+          type: integer
+    zone:
+      properties:
+        pot_id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        position:
+          type: integer
+    sensor:
+      properties:
+        pot_id:
+          type: integer
+        name:
+          type: string
+        sensor_type_id:
+          type: integer
+    pot_type:
+      properties:
+        name:
+          type: string
+        capacity:
+          type: integer
+    sensor_type:
+      properties:
+        type:
+          type: string
+    command:
+      properties:
+        water_pot_schedule:
+          type: string
+        duration_time_of_watering:
+          type: string
+          format: time
+        pot_id:
+          type: integer
+    rule:
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Primary key for Rule
+        duration:
+          type: string
+        action:
+          type: string
+        schedule:
+          type: string
+        enabled:
+          type: boolean
+        rain_probability_min:
+          type: integer
+        rain_probability_max:
+          type: integer
+        humidity_min:
+          type: integer
+        humidity_max:
+          type: integer
+        lux_min:
+          type: integer
+        lux_max:
+          type: integer
+        pot_id:
+          type: integer
+        zone_id:
+          type: string
+    cookie:
+      properties:
+        sessionid:
+          type: string
+          description: Primary key for Cookie
+        expiredate:
+          type: string
+          format: date
+          description: Expiration date for the session
+        admin:
+          type: boolean
+          description: Indicates whether the user is an admin or not
