@@ -60,6 +60,7 @@ class Service():
         except (KeyboardInterrupt, SystemExit):
             scheduler.shutdown()
     
+    #checks if the current data is within the min and max ranges
     def inRange(self):
         ruleInstance = Rule(*Service().extractRuleService())
         ruleID = ruleInstance.rulesID
