@@ -10,32 +10,32 @@ INFLUX_HOST = os.getenv('host')
 INFLUX_DATABASE = os.getenv('database')
 INFLUX_MEASUREMENT = os.getenv('measurement')
 INFLUX_CLIENT = InfluxDBClient3(host = INFLUX_HOST, token = INFLUX_TOKEN, org = INFLUX_ORG, database = INFLUX_DATABASE, verify_ssl = False)
-API_URL = os.getenv('api_url')
+API_URL = os.getenv('apiURL')
 
-PORT = os.getenv('port-microcontroller')
+PORT = os.getenv('portMicrocontroller')
 BAUDRATE = os.getenv('baudrate')
 SER = serial.Serial(PORT, BAUDRATE)
 
 
 # get json and store in list and return it
-def get_sensor_list():
-    sensor_list = []
+def getSensorList():
+    sensorList = []
     response = requests.get(API_URL)
     data = response.json()
 
     if response.status_code != 200:
-        return sensor_list
+        return sensorList
     
     for item in data:
-        sensor_list.append(item)
+        sensorList.append(item)
 
-    return json.dumps(sensor_list)
+    return json.dumps(sensorList)
 
 
 # write sensor list to pico
-def send_sensor_list(sensor_list):
+def sendSensorList(sensorList):
     try:
-        SER.write(f"{sensor_list}".encode('utf-8'))
+        SER.write(f"{sensorList}".encode('utf-8'))
     
     finally:
         with serial.Serial(PORT, BAUDRATE) as ser:
@@ -43,53 +43,53 @@ def send_sensor_list(sensor_list):
 
 
 # read the sensor list values one by one and writes them to the tsdb by making data points
-def tsdb(sensor_list):
-    for sensor in sensor_list:
-        sensor_id = sensor.get("sensor_id")
-        pot_id = sensor.get("pot_id")
-        sensor_type = sensor.get("sensor_type")
+def tsdb(sensorList):
+    for sensor in sensorList:
+        sensorID = sensor.get("sensorID")
+        potID = sensor.get("potID")
+        sensorType = sensor.get("sensorType")
         value = sensor.get("value")
 
 
-        data_point = {
+        dataPoint = {
         "point": {
-            "sensor_id" : sensor_id,
-            "pot_id" : pot_id,
-            "sensor_type" : sensor_type,
+            "sensorID" : sensorID,
+            "potID" : potID,
+            "sensorType" : sensorType,
             "value" : value,
         }
         }
 
-        print(data_point)
-        for key in data_point:
+        print(dataPoint)
+        for key in dataPoint:
             point = (
                 Point(INFLUX_MEASUREMENT)
-                .tag("sensor_id", data_point[key]["sensor_id"])
-                .tag("pot_id", data_point[key]["pot_id"])
-                .tag("sensor_type", data_point[key]["sensor_type"])
-                .field("value", data_point[key]["value"])
+                .tag("sensorID", dataPoint[key]["sensorID"])
+                .tag("potID", dataPoint[key]["potID"])
+                .tag("sensorType", dataPoint[key]["sensorType"])
+                .field("value", dataPoint[key]["value"])
             )
 
             INFLUX_CLIENT.write(point)
 
 
 # while loop reading the sensor data until it reaches 2nd "\n", otherwise handles json error (see list in send_back() in pico.py)
-def receive_sensor_list():
+def receiveSensorList():
     while True:
         try:
             while True:
-                sensor_list_with_values = SER.read_until().decode("utf-8")
-                sensor_list = json.loads(sensor_list_with_values)
-                tsdb(sensor_list)
+                sensorListWithValues = SER.read_until().decode("utf-8")
+                sensorList = json.loads(sensorListWithValues)
+                tsdb(sensorList)
 
         except ValueError:
             print("DecodeValueError")
 
 
 def main():
-    sensor_list = get_sensor_list()
-    send_sensor_list(sensor_list)
-    receive_sensor_list()
+    sensorList = getSensorList()
+    sendSensorList(sensorList)
+    receiveSensorList()
 
 
 if __name__ == "__main__":

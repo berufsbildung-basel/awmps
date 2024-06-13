@@ -5,7 +5,7 @@ from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
 
 load_dotenv()
-RULES_ENDPOINT = os.getenv('rules_url')
+RULES_ENDPOINT = os.getenv('rulesURL')
 
 class Service():
     @staticmethod
