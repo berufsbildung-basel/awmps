@@ -59,3 +59,28 @@ class Service():
                 time.sleep(1)
         except (KeyboardInterrupt, SystemExit):
             scheduler.shutdown()
+    
+    def inRange(self):
+        ruleInstance = Rule(*Service().extractRuleService())
+        ruleID = ruleInstance.rulesID
+        #sample data below
+        currentRainProbability = 300
+        currentHumidity = 25
+        currentLux = 190
+
+        def disapprove(ruleID, key):
+            print(f"Rule with id {ruleID} not approved because {key} is not in range")
+            return 1
+
+        def approve(ruleID):
+            print(f"Rule with id {ruleID} approved and is in range")
+            return 2
+
+        if not (ruleInstance.minRainProbability <= currentRainProbability <= ruleInstance.maxRainProbability):
+            return disapprove(ruleID, "rain probability")
+        elif not (ruleInstance.minHumidity <= currentHumidity <= ruleInstance.maxHumidity):
+            return disapprove(ruleID, "humidity")
+        elif not (ruleInstance.minLux <= currentLux <= ruleInstance.maxLux):
+            return disapprove(ruleID, "lux")
+        else:
+            return approve(ruleID)

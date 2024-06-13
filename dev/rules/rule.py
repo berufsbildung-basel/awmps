@@ -18,27 +18,3 @@ class Rule:
         self.maxHumidity = maxHumidity
         self.minLux = minLux
         self.maxLux = maxLux
-
-    def inRange(self):
-        ruleID = self.rulesID
-        #sample data below
-        currentRainProbability = 300
-        currentHumidity = 25
-        currentLux = 190
-
-        def disapprove(ruleID, key):
-            print(f"Rule with id {ruleID} not approved because {key} is not in range")
-            return 1
-
-        def approve(ruleID):
-            print(f"Rule with id {ruleID} approved and is in range")
-            return 2
-
-        if not (self.minRainProbability <= currentRainProbability <= self.maxRainProbability):
-            return disapprove(ruleID, "rain probability")
-        elif not (self.minHumidity <= currentHumidity <= self.maxHumidity):
-            return disapprove(ruleID, "humidity")
-        elif not (self.minLux <= currentLux <= self.maxLux):
-            return disapprove(ruleID, "lux")
-        else:
-            return approve(ruleID)
