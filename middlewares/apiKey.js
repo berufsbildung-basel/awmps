@@ -1,4 +1,4 @@
-const validApiKey = "your_secret_api_key"; // Replace this with your actual API key
+const validApiKey = process.env.API_KEY; 
 
 const apiKeyMiddleware = (req, res, next) => {
   const apiKey = req.headers['x-api-key'];
