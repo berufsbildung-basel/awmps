@@ -1,16 +1,14 @@
-import os, requests, time, logging, sys
+import os, requests, time, logging
 from rule import Rule
 from actions import Action
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
+from ..loop import microcontroller
 
 load_dotenv()
 RULES_ENDPOINT = os.getenv('rulesURL')
 
-# project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# sys.path.append(project_root)
-# from loop.microcontroller import 
 
 class Service():
 # Gets the list of rules from the endpoint and stores it in a list
@@ -36,10 +34,10 @@ class Service():
         singleRule = {}
         for rule in rulesList[:]: 
 
-            if rule['rulesID'] != 1: #TODO change to a variable
+            if rule['rulesID'] != 1: #TODO change the number to a variable
                 print(f"No rule with id {rule['rulesID']} found") #TODO log if possible
 
-            elif rule['rulesID'] == 1: #TODO change to a variable
+            elif rule['rulesID'] == 1: #TODO change the number to a variable
                 rulesList.remove(rule)
                 singleRule.update(rule)
                 singleRuleValues = singleRule.values()

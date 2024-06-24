@@ -46,6 +46,7 @@ def tsdb(sensorList):
     for sensor in sensorList:
         sensorID = sensor.get("sensorID")
         potID = sensor.get("potID")
+        zoneID = sensor.get("zoneID")
         sensorType = sensor.get("sensorType")
         value = sensor.get("value")
 
@@ -54,6 +55,7 @@ def tsdb(sensorList):
         "point": {
             "sensorID" : sensorID,
             "potID" : potID,
+            "zoneID" : zoneID,
             "sensorType" : sensorType,
             "value" : value,
         }
@@ -65,6 +67,7 @@ def tsdb(sensorList):
                 Point(INFLUX_MEASUREMENT)
                 .tag("sensorID", dataPoint[key]["sensorID"])
                 .tag("potID", dataPoint[key]["potID"])
+                .tag("zoneID", dataPoint[key]["zoneID"])
                 .tag("sensorType", dataPoint[key]["sensorType"])
                 .field("value", dataPoint[key]["value"])
             )
