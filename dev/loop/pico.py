@@ -26,7 +26,7 @@ def loop(sensorList):
                 value = int((random.uniform(10, 20)))
             elif sensorType == 'airTemperature':
                 value = int((random.uniform(20, 30)))
-            elif sensorType == 'moisture':
+            elif sensorType == 'soilMoisture':
                 value = int((random.uniform(30, 40)))
             elif sensorType == 'soilTemperature':
                 value = int((random.uniform(40, 50)))

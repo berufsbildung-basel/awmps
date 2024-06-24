@@ -4,7 +4,7 @@
         "rulesID" : 1,
         "potID" : 2,
         "zoneID" : 3,
-        "duration" : 60,
+        "duration" : 5,
         "action" : "water",
         "schedule" : "*/1 * * * *",
         "enabled" : true,

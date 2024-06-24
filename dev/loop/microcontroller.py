@@ -11,7 +11,6 @@ INFLUX_DATABASE = os.getenv('database')
 INFLUX_MEASUREMENT = os.getenv('measurement')
 INFLUX_CLIENT = InfluxDBClient3(host = INFLUX_HOST, token = INFLUX_TOKEN, org = INFLUX_ORG, database = INFLUX_DATABASE, verify_ssl = False)
 API_URL = os.getenv('apiURL')
-
 PORT = os.getenv('portMicrocontroller')
 BAUDRATE = os.getenv('baudrate')
 SER = serial.Serial(PORT, BAUDRATE)

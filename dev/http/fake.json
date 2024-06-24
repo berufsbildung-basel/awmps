@@ -31,13 +31,13 @@
     },
     {
         "potID" : 2,
-        "sensorID" : "M07",
-        "sensorType" : "moisture"
+        "sensorID" : "SM07",
+        "sensorType" : "soilMoisture"
     },
     {
         "potID" : 1,
-        "sensorID" : "M08",
-        "sensorType" : "moisture"
+        "sensorID" : "SM08",
+        "sensorType" : "soilMoisture"
     },
     {
         "potID" : 4,
