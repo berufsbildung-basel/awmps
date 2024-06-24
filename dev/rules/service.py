@@ -1,5 +1,6 @@
-import os, requests, time, logging
+import os, requests, time, logging, sys
 from rule import Rule
+from actions import Action
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
@@ -7,7 +8,12 @@ from dotenv import load_dotenv
 load_dotenv()
 RULES_ENDPOINT = os.getenv('rulesURL')
 
+# project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# sys.path.append(project_root)
+# from loop.microcontroller import 
+
 class Service():
+# Gets the list of rules from the endpoint and stores it in a list
     @staticmethod
     def getRulesListService():
         rulesList = []
@@ -23,57 +29,67 @@ class Service():
             print(f"JSON decode error: {e}")
         return rulesList
     
+    
 # Extract a single rule from the list of rules and store it in a dictionary
     def extractRuleService(self):
         rulesList = self.getRulesListService()
         singleRule = {}
         for rule in rulesList[:]: 
 
-            if rule['rules_id'] != 1:
-                print(f"No rule with id {rule['rules_id']} found")
+            if rule['rulesID'] != 1: #TODO change to a variable
+                print(f"No rule with id {rule['rulesID']} found") #TODO log if possible
 
-            elif rule['rules_id'] == 1:
+            elif rule['rulesID'] == 1: #TODO change to a variable
                 rulesList.remove(rule)
                 singleRule.update(rule)
                 singleRuleValues = singleRule.values()
                 return list(singleRuleValues)
 
-    def execute(self):
-        return print("\napprove\n")
 
-    #sets a schedule (aka cronjob) and logs everything
+# Gets the duration from the rule
+    def getDuration(self):
+        ruleInstance = Rule(*Service().extractRuleService())
+        duration = ruleInstance.duration
+        return duration
+
+    def executeAction(self):
+        duration = Service().getDuration()
+        action = Action().water(duration)
+        return action
+
+
+# Sets a schedule (aka cronjob) and logs everything
     def scheduleService(self):
-        schedule = Rule(*Service().extractRuleService()).schedule
+        ruleSchedule = Rule(*Service().extractRuleService()).schedule
+
         scheduler = BackgroundScheduler()
+        trigger = CronTrigger.from_crontab(ruleSchedule)
+        scheduler.add_job(self.executeAction, trigger)
 
-        trigger = CronTrigger.from_crontab(schedule)
-
-        scheduler.add_job(self.execute, trigger)
-
-        logging.basicConfig()
-        logging.getLogger('apscheduler').setLevel(logging.DEBUG)
-        
         try:
+            logging.basicConfig()
+            logging.getLogger('apscheduler').setLevel(logging.DEBUG)
             scheduler.start()
             while True:
                 time.sleep(1)
         except (KeyboardInterrupt, SystemExit):
             scheduler.shutdown()
-    
-    #checks if the current data is within the min and max ranges
+
+
+# Checks if the current data is within the min and max ranges
     def inRange(self):
         ruleInstance = Rule(*Service().extractRuleService())
         ruleID = ruleInstance.rulesID
         #sample data below
-        currentRainProbability = 300
+        currentRainProbability = 30
         currentHumidity = 25
         currentLux = 190
 
-        def disapprove(ruleID, key):
+        def disapprove(ruleID, key): #temporary
             print(f"Rule with id {ruleID} not approved because {key} is not in range")
             return 1
 
-        def approve(ruleID):
+        def approve(ruleID): #temporary
             print(f"Rule with id {ruleID} approved and is in range")
             return 2
 
