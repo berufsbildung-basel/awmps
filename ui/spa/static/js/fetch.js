@@ -2,13 +2,13 @@ const openButton = document.querySelector("[data-open-modal]")
 const closeButton = document.querySelector("[data-close-modal]")
 const modal = document.querySelector("[data-modal]")
 
-openButton.addEventListener("click", () => {
-    modal.show()
-})
+// openButton.addEventListener("click", () => {
+//     modal.show()
+// })
 
-closeButton.addEventListener("click", () => {
-    modal.close()
-})
+// closeButton.addEventListener("click", () => {
+//     modal.close()
+// })
 
 function toggleNav() {
     document.getElementById("sideNav").classList.toggle("open");
