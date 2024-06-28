@@ -1,86 +1,86 @@
 [
     {
-        "potID" : 4,
-        "zoneID" : 3,
         "sensorID" : "L01",
+        "potID" : 4,
+        "zoneID" : 3,
         "sensorType" : "light"
     },
     {
-        "potID" : 3,
-        "zoneID" : 2,
         "sensorID" : "L02",
+        "potID" : 3,
+        "zoneID" : 2,
         "sensorType" : "light"
     },
     {
-        "potID" : 2,
-        "zoneID" : 1,
         "sensorID" : "AH03",
+        "potID" : 2,
+        "zoneID" : 1,
         "sensorType" : "airHumidity"
     },
     {
-        "potID" : 1,
-        "zoneID" : 4,
         "sensorID" : "AH04",
+        "potID" : 1,
+        "zoneID" : 4,
         "sensorType" : "airHumidity"
     },
     {
-        "potID" : 4,
-        "zoneID" : 3,
         "sensorID" : "AT05",
+        "potID" : 4,
+        "zoneID" : 3,
         "sensorType" : "airTemperature"
     },
     {
-        "potID" : 3,
-        "zoneID" : 2,
         "sensorID" : "AT06",
+        "potID" : 3,
+        "zoneID" : 2,
         "sensorType" : "airTemperature"
     },
     {
+        "sensorID" : "SM07",
         "potID" : 2,
         "zoneID" : 1,
-        "sensorID" : "SM07",
         "sensorType" : "soilMoisture"
     },
     {
+        "sensorID" : "SM08",
         "potID" : 1,
         "zoneID" : 4,
-        "sensorID" : "SM08",
         "sensorType" : "soilMoisture"
     },
     {
+        "sensorID" : "ST09",
         "potID" : 4,
         "zoneID" : 3,
-        "sensorID" : "ST09",
         "sensorType" : "soilTemperature"
     },
     {
+        "sensorID" : "ST10",
         "potID" : 3,
         "zoneID" : 2,
-        "sensorID" : "ST10",
         "sensorType" : "soilTemperature"
     },
     {
+        "sensorID" : "WF11",
         "potID" : 2,
         "zoneID" : 1,
-        "sensorID" : "WF11",
         "sensorType" : "waterFlow"
     },
     {
+        "sensorID" : "WF12",
         "potID" : 1,
         "zoneID" : 4,
-        "sensorID" : "WF12",
         "sensorType" : "waterFlow"
     },
     {
+        "sensorID" : "V13",
         "potID" : 4,
         "zoneID" : 3,
-        "sensorID" : "V13",
         "sensorType" : "valve"
     },
     {
+        "sensorID" : "V14",
         "potID" : 3,
         "zoneID" : 2,
-        "sensorID" : "V14",
         "sensorType" : "valve"
     }
 ]
