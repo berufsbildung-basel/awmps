@@ -16,7 +16,7 @@ BAUDRATE = os.getenv('baudrate')
 SER = serial.Serial(PORT, BAUDRATE)
 
 
-# get json and store in list and return it
+# gets sensors list from endpoint and stores it in a list and returns it
 def getSensorList():
     sensorList = []
     response = requests.get(API_URL)
@@ -28,15 +28,13 @@ def getSensorList():
     for item in data:
         sensorList.append(item)
 
-    print(json.dumps(sensorList))
     return json.dumps(sensorList)
 
 
-# write sensor list to pico
+# writes the sensor list to the pico
 def sendSensorList(sensorList):
     try:
         sensorList = "\n" + sensorList + "\n"
-        print(sensorList)
         SER.write(sensorList.encode('utf-8'))
     
     finally:
@@ -44,7 +42,7 @@ def sendSensorList(sensorList):
             x = ser.read()
 
 
-# read the sensor list values one by one and writes them to the tsdb by making data points
+# reads the sensor list including it's values and writes them to the tsdb 1 by 1 through data points
 def tsdb(sensorList):
     for sensor in sensorList:
         sensorID = sensor.get("sensorID")
@@ -64,7 +62,7 @@ def tsdb(sensorList):
         }
         }
 
-        print(dataPoint)
+        # print(dataPoint)
         for key in dataPoint:
             point = (
                 Point(INFLUX_MEASUREMENT)
@@ -78,7 +76,7 @@ def tsdb(sensorList):
             INFLUX_CLIENT.write(point)
 
 
-# while loop reading the sensor data until it reaches 2nd "\n", otherwise handles json error (see list in send_back() in pico.py)
+# while loop reads the data 1 by 1 until it reaches "\n" (line break) and calls the function tsdb with the sensor list with the values
 def receiveSensorList():
     while True:
         try:
@@ -87,8 +85,8 @@ def receiveSensorList():
                 sensorList = json.loads(sensorListWithValues)
                 tsdb(sensorList)
 
-        except ValueError:
-            print("DecodeValueError")
+        except json.JSONDecodeError as e:
+            print(f"Error decoding JSON: {e}")
 
 
 def main():
