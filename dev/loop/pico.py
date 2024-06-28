@@ -33,7 +33,7 @@ def loop(sensorList):
             elif sensorType == 'waterFlow':
                 value = round(float(random.uniform(50, 60)), 1)
             elif sensorType == 'valve':
-                value = round(float(random.uniform(0, 2)), 1)
+                value = round(float(random.uniform(0, 1)), 0)
             else:
                 value = None
 
@@ -42,7 +42,6 @@ def loop(sensorList):
 
         sendJsonListBack = json.dumps(sendListBack)
         
-        print(sendJsonListBack + "\n") ### remove later
         sendBack(sendJsonListBack)
 
         time.sleep(10)
@@ -61,20 +60,16 @@ def readSensorList():
                     print("No data received or data is empty.")
                     return
                 
-                try:
-                    sensorList = json.loads(sensorListStr)
-                    loop(sensorList)
-                except json.JSONDecodeError as e:
-                    print(f"Error decoding JSON: {e}")
-                    print("Received data might be incomplete or corrupted.")
-                        
-        except Exception as e:
-            print(f"Error reading sensor list: {e}")
+                sensorList = json.loads(sensorListStr)
+                loop(sensorList)
 
-
+        except json.JSONDecodeError as e:
+            print(f"Error decoding JSON: {e}")
+            print("Received data might be incomplete or corrupted.")
 
 def main():
     readSensorList()
+
 
 if __name__ == "__main__":
     main()
