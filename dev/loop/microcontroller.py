@@ -28,13 +28,16 @@ def getSensorList():
     for item in data:
         sensorList.append(item)
 
+    print(json.dumps(sensorList))
     return json.dumps(sensorList)
 
 
 # write sensor list to pico
 def sendSensorList(sensorList):
     try:
-        SER.write(f"{sensorList}".encode('utf-8'))
+        sensorList = "\n" + sensorList + "\n"
+        print(sensorList)
+        SER.write(sensorList.encode('utf-8'))
     
     finally:
         with serial.Serial(PORT, BAUDRATE) as ser:
@@ -80,7 +83,7 @@ def receiveSensorList():
     while True:
         try:
             while True:
-                sensorListWithValues = SER.read_until().decode("utf-8")
+                sensorListWithValues = SER.read_until().decode('utf-8')
                 sensorList = json.loads(sensorListWithValues)
                 tsdb(sensorList)
 

@@ -21,19 +21,19 @@ def loop(sensorList):
             sensorType = sensor.get('sensorType')
 
             if sensorType == 'light':
-                value = int((random.uniform(0, 10)))
+                value = round(float(random.uniform(0, 10)), 1)
             elif sensorType == 'airHumidity':
-                value = int((random.uniform(10, 20)))
+                value = round(float(random.uniform(10, 20)), 1)
             elif sensorType == 'airTemperature':
-                value = int((random.uniform(20, 30)))
+                value = round(float(random.uniform(20, 30)), 1)
             elif sensorType == 'soilMoisture':
-                value = int((random.uniform(30, 40)))
+                value = round(float(random.uniform(30, 40)), 1)
             elif sensorType == 'soilTemperature':
-                value = int((random.uniform(40, 50)))
+                value = round(float(random.uniform(40, 50)), 1)
             elif sensorType == 'waterFlow':
-                value = int((random.uniform(50, 60)))
+                value = round(float(random.uniform(50, 60)), 1)
             elif sensorType == 'valve':
-                value = int((random.uniform(0, 2)))
+                value = round(float(random.uniform(0, 2)), 1)
             else:
                 value = None
 
@@ -48,20 +48,33 @@ def loop(sensorList):
         time.sleep(10)
 
 
-# receives the sensor list - parses the json string to an object - calls the loop function - handles error if nothing comes from the serial
+# receives the sensor list - parses the json string to an object - calls the loop function - handles errors
 def readSensorList():
     time.sleep(3)
-    try:
-        sensorListStr = SER.read_all().decode('utf-8').strip()
-        sensorList = json.loads(sensorListStr)
-        loop(sensorList)
+    while True:
+        try:
+            while True:
+                sensorListStr = SER.read_until().decode('utf-8')
+                print(f"Received raw data: {sensorListStr}")
+                
+                if not sensorListStr:
+                    print("No data received or data is empty.")
+                    return
+                
+                try:
+                    sensorList = json.loads(sensorListStr)
+                    loop(sensorList)
+                except json.JSONDecodeError as e:
+                    print(f"Error decoding JSON: {e}")
+                    print("Received data might be incomplete or corrupted.")
+                        
+        except Exception as e:
+            print(f"Error reading sensor list: {e}")
 
-    except ValueError:
-        print("DecodeValueError")
 
 
 def main():
-        readSensorList()
+    readSensorList()
 
 if __name__ == "__main__":
     main()
