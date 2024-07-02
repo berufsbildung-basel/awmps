@@ -1,0 +1,50 @@
+[
+    {
+        "createdAt" : "01-03-2024",
+        "rulesID" : 1,
+        "potID" : 2,
+        "zoneID" : 3,
+        "duration" : 5,
+        "action" : "water",
+        "schedule" : "*/1 * * * *",
+        "enabled" : true,
+        "rainProbabilityMin" : 0,
+        "rainProbabilityMax" : 40,
+        "humidityMin" : 25,
+        "humidityMax" : 40,
+        "luxMin" : 180,
+        "luxMax" : 250
+    },
+    {
+        "createdAt" : "01-04-2024",
+        "rulesID" : 4,
+        "potID" : 5,
+        "zoneID" : 1,
+        "duration" : 30,
+        "action" : "water",
+        "schedule" : "*/1 * * * *",
+        "enabled" : true,
+        "rainProbabilityMin" : 5,
+        "rainProbabilityMax" : 25,
+        "humidityMin" : 20,
+        "humidityMax" : 40,
+        "luxMin" : 150,
+        "luxMax" : 240
+    },
+    {
+        "createdAt" : "04-05-2024",
+        "rulesID" : 2,
+        "potID" : 3,
+        "zoneID" : 3,
+        "duration" : 10,
+        "action" : "water",
+        "schedule" : "*/1 * * * *",
+        "enabled" : true,
+        "rainProbabilityMin" : 10,
+        "rainProbabilityMax" : 30,
+        "humidityMin" : 15,
+        "humidityMax" : 30,
+        "luxMin" : 120,
+        "luxMax" : 200
+    }
+]

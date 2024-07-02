@@ -1,0 +1,86 @@
+[
+    {
+        "sensorID" : "L01",
+        "potID" : 4,
+        "zoneID" : 3,
+        "sensorType" : "light"
+    },
+    {
+        "sensorID" : "L02",
+        "potID" : 3,
+        "zoneID" : 2,
+        "sensorType" : "light"
+    },
+    {
+        "sensorID" : "AH03",
+        "potID" : 2,
+        "zoneID" : 1,
+        "sensorType" : "airHumidity"
+    },
+    {
+        "sensorID" : "AH04",
+        "potID" : 1,
+        "zoneID" : 4,
+        "sensorType" : "airHumidity"
+    },
+    {
+        "sensorID" : "AT05",
+        "potID" : 4,
+        "zoneID" : 3,
+        "sensorType" : "airTemperature"
+    },
+    {
+        "sensorID" : "AT06",
+        "potID" : 3,
+        "zoneID" : 2,
+        "sensorType" : "airTemperature"
+    },
+    {
+        "sensorID" : "SM07",
+        "potID" : 2,
+        "zoneID" : 1,
+        "sensorType" : "soilMoisture"
+    },
+    {
+        "sensorID" : "SM08",
+        "potID" : 1,
+        "zoneID" : 4,
+        "sensorType" : "soilMoisture"
+    },
+    {
+        "sensorID" : "ST09",
+        "potID" : 4,
+        "zoneID" : 3,
+        "sensorType" : "soilTemperature"
+    },
+    {
+        "sensorID" : "ST10",
+        "potID" : 3,
+        "zoneID" : 2,
+        "sensorType" : "soilTemperature"
+    },
+    {
+        "sensorID" : "WF11",
+        "potID" : 2,
+        "zoneID" : 1,
+        "sensorType" : "waterFlow"
+    },
+    {
+        "sensorID" : "WF12",
+        "potID" : 1,
+        "zoneID" : 4,
+        "sensorType" : "waterFlow"
+    },
+    {
+        "sensorID" : "V13",
+        "potID" : 4,
+        "zoneID" : 3,
+        "sensorType" : "valve"
+    },
+    {
+        "sensorID" : "V14",
+        "potID" : 3,
+        "zoneID" : 2,
+        "sensorType" : "valve"
+    }
+]
