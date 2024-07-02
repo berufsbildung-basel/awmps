@@ -1,12 +1,17 @@
-import os, requests, time, logging
+import os, requests, time, logging, serial
 from rule import Rule
 from actions import Action
+from query import Query
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from dotenv import load_dotenv
-from ..loop import microcontroller
 
 load_dotenv()
+
+PORT = os.getenv('portMicrocontroller')
+BAUDRATE = os.getenv('baudrate')
+SER = serial.Serial(PORT, BAUDRATE)
+
 RULES_ENDPOINT = os.getenv('rulesURL')
 
 
@@ -32,16 +37,14 @@ class Service():
     def extractRuleService(self):
         rulesList = self.getRulesListService()
         singleRule = {}
-        for rule in rulesList[:]: 
-
-            if rule['rulesID'] != 1: #TODO change the number to a variable
-                print(f"No rule with id {rule['rulesID']} found") #TODO log if possible
-
-            elif rule['rulesID'] == 1: #TODO change the number to a variable
-                rulesList.remove(rule)
-                singleRule.update(rule)
-                singleRuleValues = singleRule.values()
-                return list(singleRuleValues)
+        
+        for rule in rulesList[:]:
+            print(rulesList)
+            rulesList.remove(rulesList[-1])
+            singleRule.update(rule)
+            singleRuleValues = singleRule.values()
+            
+            return list(singleRuleValues)
 
 
 # Gets the duration from the rule
@@ -50,6 +53,8 @@ class Service():
         duration = ruleInstance.duration
         return duration
 
+
+# Calls the action to be executed (e.g. watering)
     def executeAction(self):
         duration = Service().getDuration()
         action = Action().water(duration)
@@ -79,16 +84,16 @@ class Service():
         ruleInstance = Rule(*Service().extractRuleService())
         ruleID = ruleInstance.rulesID
         #sample data below
-        currentRainProbability = 30
+        currentRainProbability = 20
         currentHumidity = 25
         currentLux = 190
 
         def disapprove(ruleID, key): #temporary
-            print(f"Rule with id {ruleID} not approved because {key} is not in range")
+            print(f"\nRule with id {ruleID} not approved because {key} is not in range\n")
             return 1
 
         def approve(ruleID): #temporary
-            print(f"Rule with id {ruleID} approved and is in range")
+            print(f"\nRule with id {ruleID} approved and is in range \n")
             return 2
 
         if not (ruleInstance.minRainProbability <= currentRainProbability <= ruleInstance.maxRainProbability):
@@ -99,3 +104,10 @@ class Service():
             return disapprove(ruleID, "lux")
         else:
             return approve(ruleID)
+
+
+    def queryService(self):
+        while True:
+            queryInstance = Query().query()
+            print(queryInstance)
+            time.sleep(10)

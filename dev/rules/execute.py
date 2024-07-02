@@ -4,7 +4,7 @@ from service import Service
 inrange = Service().inRange()
 
 if inrange == 1:
-    print("deny")
+    pass
 elif inrange == 2:
-    print("accept")
-    Service().scheduleService()
+    # Service().scheduleService()
+    Service().queryService()
