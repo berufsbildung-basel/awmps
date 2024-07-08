@@ -1,0 +1,348 @@
+openapi: 3.0.0
+info:
+  title: awmps-api
+  version: 1.0.0
+  #url: to be determined
+paths:
+  /pot_types:
+    get:
+      summary: Get a list of all pot types
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new pot type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                capacity:
+                  type: integer
+      responses:
+        '201':
+          description: Pot Type created successfully
+  /pot_types/{id}:
+    get:
+      summary: Get details of a specific pot type
+      responses:
+        '200':
+          description: Successful response
+    put:
+      summary: Update a specific pot type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                capacity:
+                  type: integer
+      responses:
+        '200':
+          description: Pot Type updated successfully
+    delete:
+      summary: Delete a specific pot type
+      responses:
+        '204':
+          description: Pot Type deleted successfully
+  /users:
+    get:
+      summary: Get a list of all users
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                role:
+                  type: integer
+                disabled:
+                  type: boolean
+                last_signed:
+                  type: string
+                  format: date
+                User_setting_id:
+                  type: integer
+      responses:
+        '201':
+          description: User created successfully
+  /users/{useranme}:
+    get:
+      summary: Get a list of a specific user
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Update a specific user
+      requestBody:
+        content:
+          application/jason:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                email:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                role:
+                  type: integer
+                disabled:
+                  type: boolean
+                last_signed:
+                  type: string
+                  format: date
+                User_setting:
+                  type: integer
+      reesponses:
+        '201':
+          description: User updated successfully
+    delete: 
+      summary: Delete a specific user
+      responses: 
+      '204':
+        description: User deleted successfully
+  /user_settings:
+    get:
+      summery: Get a list of all user settings
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summery: add a user setting
+      requestBody:
+        content: 
+          application/json:
+            schema:
+              type: object
+              properties:
+                notification:
+                  type: boolean
+                pot_watering_notification:
+                  type: boolean
+                low_moisture_notification:
+                  type: boolean
+                plant_watering_schedule_notification_10min:
+                  type: boolean
+                pot_watering_schedule_notification_10min:
+                  type: boolean
+                low_moisture_notification: 
+                  type: int
+                low_temperature_notification:
+                  type: int
+                low_soil_temperature_notifiction: 
+                  type: int
+      responses:
+        '201':
+          description: Successfully created a users setting
+  /user_settings/{id}:
+    get:
+      summery: Get the list of a specific users settings
+      responses:
+        '200':
+          description: successful respons
+    put: 
+      summery: update a specific users settings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: obejct
+              properties:
+                notification:
+                  type: boolean
+                pot_watering_notification:
+                  type: boolean
+                low_moisture_notification:
+                  type: boolean
+                plant_watering_schedule_notification_10min:
+                  type: boolean
+                pot_watering_schedule_notification_10min:
+                  type: boolean
+                low_moisture_notification:
+                  type: integer
+                low_tempreture_notification:
+                  type: integer
+                low_soil_temperature_notification:
+                  type: integer
+      responses:
+        '200':
+          description: users settings updated successfully
+    delete:
+      summery: delete a specific users settings
+      responses:
+        '204':
+          description: delete a specific users settings
+  /pots:
+    get:
+      summary: Get a list of pots
+      response: 
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new pot
+      requestBody:
+        content:
+          application/json:
+            schema: object
+              type: object
+              properties:
+                name:
+                  type: string
+                pot_type_id:
+                  type: integer
+      responses:
+        '201':
+          description: Pot created successfully
+  /pots/{id}:
+    get: 
+      summary: Get a specific pot
+      responses:
+        '200':
+          description: "Successful response"
+    put:
+      summary: Update a specific pot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                pot_type_id:
+                  type: integer
+      responses:
+        '200':
+          description: Pot updated successfully
+    delete:
+      summary: Delete a specifc pot
+      responses:  
+      '204':
+        description: Pot deleted successfully
+  /plants:
+    get: 
+      summery: Get a list of all plants
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summery: Create a new plant
+      requestBody:
+        content: 
+          application/json:
+            schema:
+              type: object
+              properties:
+                pot_id: 
+                  type: integer
+                name:
+                  type: string
+                description:
+                  type: string
+                position:
+                  type: integer
+      responses:
+        '201':
+          description: Plant created successfully 
+  /plants/{id}:
+    get:
+      summery: Get the details of a specific plant
+      response:
+        '200':
+          description: Successful response
+    put:
+      summery: Update a specific plant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pot_id: 
+                  type: integer
+                name:
+                  type: string
+                description:
+                  type: string
+                position:
+                  type: integer
+      responses:
+        '200':
+          description: Plant updated successfully
+    delete:
+      summery: Delete a specific plant
+      responses:
+        '204':
+          description: Plant deleted successfully
+  /sensors: 
+    get: 
+      summery: Get a list of all Sensors
+      responses: 
+        '200':
+          description: Successful response
+    post: 
+      summery: Create a new Sensor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pot_id:
+                  type: integer
+                name:
+                  type: string
+      responses:
+        '201':
+          description: Sensor created successfully
+  /sensors/{id}:
+    get: 
+      summery: Get the details of a specific sensor
+      responses:
+        '200':
+          description: Successful response
+    put:
+      summery: update a specific sensor
+      requestBody:
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                pot_id:
+                  type: integer
+                name:
+                  type: integer
+      responses:
+        '200':
+          description: sensor updated successfully
+    delete:
+      summery: delete a sensor
+      responses:
+        '204':
+          description: sensor deleted successfully 
