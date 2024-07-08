@@ -10,7 +10,7 @@ export default class extends AbstractView {
         return `
         <header>
         <div class="logo" onclick="toggleNav()">
-            <img src="/images/awmps_logo.png" alt="AWMPS Logo">
+            <img src="/Users/tristanthomas/Documents/awmps/ui/spa/static/images/awmps_logo.png" alt="AWMPS Logo">
         </div>
         <h1>AWMPS</h1>  
         <button data-open-modal class="settings-button">
